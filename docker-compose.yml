@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  k6-performance-test:
+    image: grafana/k6:latest
+    environment:
+      - K6_CLOUD_TOKEN=${K6_TOKEN}  # Replace with your actual token
+    volumes:
+      - ./performance_test.js:/performance_test.js  # Mount test script
+    command: ["run", "/performance_test.js", "-o", "cloud"]  # Runs test locally but sends output to Grafana Cloud
