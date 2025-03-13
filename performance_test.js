@@ -1,8 +1,7 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { Trend, Rate, Counter } from 'k6/metrics';
-
-import { test_config } from './test_config';
+import { config } from './configurations.js';
 
 // Base API URL from env
 const BASE_URL = __ENV.BASE_URL;
@@ -18,7 +17,7 @@ let p99 = new Trend('p99_latency');
 let throughput = new Trend('throughput');
 
 
-export let options = test_config
+export let options = config
 
 
 // Function to test API performance

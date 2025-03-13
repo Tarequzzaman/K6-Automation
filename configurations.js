@@ -1,6 +1,6 @@
+import http from 'k6/http';
 
-
-export let test_config = {
+export let config = {
     scenarios: {
         smoke: {  // Smoke tests have a minimal load. Run them to verify that the system works well under minimal load and to gather baseline performance values.
             executor: 'constant-vus',

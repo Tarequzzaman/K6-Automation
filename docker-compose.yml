@@ -7,5 +7,6 @@ services:
       - K6_CLOUD_TOKEN=${GRAFANA_CLOUD_TOKEN}  # Replace with your actual token
       - BASE_URL=${BASE_URL}        # Load from .env
     volumes:
-      - ./performance_test.js:/performance_test.js  # Mount test script
-    command: ["run", "/performance_test.js", "-o", "cloud"]  # Runs test locally but sends output to Grafana Cloud
+      - .:/k6-test  # Mount the entire directory
+    working_dir: /k6-test  # Set working directory inside the container
+    command: ["run", "/k6-test/performance_test.js", "-o", "cloud"]
