@@ -2,6 +2,10 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { Trend, Rate, Counter } from 'k6/metrics';
 
+// Base API URL from env
+const BASE_URL = __ENV.BASE_URL;
+
+
 // Define performance metrics
 let responseTime = new Trend('response_time');
 let failureRate = new Rate('failed_requests');
@@ -81,8 +85,7 @@ export let options = {
     },
 };
 
-// Base API URL
-const BASE_URL = 'https://api.restful-api.dev/objects';
+
 
 // Function to test API performance
 function testAPI(apiName, method, url, params = {}, payload = null) {
