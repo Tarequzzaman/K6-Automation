@@ -10,7 +10,7 @@ export let config = {
 
        baseline: {
             executor: 'constant-vus',
-            vus: 2, // Simulating 10 virtual users
+            vus: 20, // Simulating 10 virtual users
             duration: '10m', // Run for 10 minutes
            
         },
@@ -19,18 +19,18 @@ export let config = {
             executor: 'ramping-vus',
             startVUs: 1,
             stages: [
-                { duration: '5m', target: 4 },
-                { duration: '20m', target: 3 },
+                { duration: '5m', target: 200 },
+                { duration: '20m', target:200 },
                 { duration: '5m', target: 0 },
             ],
         },
 
         stress: { 
             executor: 'ramping-vus',
-            startVUs: 1,
+            startVUs: 50,
             stages: [
-                { duration: '10m', target: 4 }, 
-                { duration: '20m', target: 4 }, 
+                { duration: '10m', target: 200 }, 
+                { duration: '1d', target: 200 }, 
                 { duration: '10m', target: 0 }, 
             ],
         },
@@ -38,9 +38,9 @@ export let config = {
         soak: {  
             executor: 'ramping-vus',
             stages: [
-                { duration: '5m', target: 1 }, 
-                { duration: '30m', target: 1 }, 
-                { duration: '1m', target: 0 },   
+                { duration: '5m', target: 100 }, 
+                { duration: '5h', target: 100 }, 
+                { duration: '10m', target: 0 },   
             ],
         },
 
@@ -48,8 +48,8 @@ export let config = {
             executor: 'ramping-vus',
             startVUs: 1,
             stages: [
-                { duration: '10m', target: 1 },  // Ramp-up to 50 users
-                { duration: '30m', target: 2 },   // Sustain for 5 hours
+                { duration: '10m', target: 100 },  // Ramp-up to 50 users
+                { duration: '30m', target: 200 },   // Sustain for 5 hours
                 { duration: '10m', target: 0 },   // Ramp-down to 0 users
             ],
         },
@@ -62,7 +62,7 @@ export let config = {
             preAllocatedVUs: 1, // Pre-allocate VUs (should be at least 2x startRate)
             maxVUs: 1, // Optional: Limit the maximum VUs to avoid excessive allocation
             stages: [
-                { duration: '2m', target: 10 },  // Ramp up to 10 RPS over 2 minutes
+                { duration: '2m', target: 10000 },  // Ramp up to 10 RPS over 2 minutes
                 { duration: '1m', target: 0 },   // Drop back down to 0 RPS
             ],
         },
