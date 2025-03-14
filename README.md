@@ -5,7 +5,6 @@ This project is a **performance testing suite** using [Grafana K6](https://k6.io
 
 ### **Key Features**
 - Simulates different types of traffic patterns
-- Sends performance logs to **Grafana Cloud & Loki**
 - Supports **Docker & Docker Compose**
 - Uses **modular configurations** for easy customization
 
@@ -18,7 +17,6 @@ This project is a **performance testing suite** using [Grafana K6](https://k6.io
 │── .env                       # Environment variables
 │── performance_test.js        # Main K6 test script
 │── configurations.js          # Load testing configurations
-
 ```
 
 ---
@@ -26,7 +24,6 @@ This project is a **performance testing suite** using [Grafana K6](https://k6.io
 ## 🚀 Prerequisites
 Before running the project, ensure you have:
 - **Docker & Docker Compose** installed
-- **Grafana Cloud account** (if using cloud logging)
 - **K6 installed (optional for local runs)**
 
 ## To install K6 locally: (Optional)
@@ -36,11 +33,10 @@ choco install k6  # Windows
 sudo apt install k6  # Linux
 ```
 
-
 ## 🛠️ Running K6 Locally (Optional)
 If you want to run K6 **without Docker**, use:
 ```sh
-k6 run performance_test.js -o cloud
+k6 run performance_test.js
 ```
 > Requires K6 to be installed locally.
 
@@ -56,11 +52,8 @@ cd K6-Automation
 ### **2. Configure Environment Variables**
 Create a `.env` file in the project root and add:
 ```
-GRAFANA_CLOUD_TOKEN=your_grafana_cloud_token
 BASE_URL=https://your-api-endpoint.com
-LOKI_URL=https://logs-prod-xyz.grafana.net
 ```
-> **Note:** If using a **self-hosted Loki**, replace `LOKI_URL` with `http://loki:3100`.
 
 ---
 
@@ -70,7 +63,6 @@ To start the test using Docker Compose:
 ```sh
 docker compose up --build
 ```
-> This will run the test and send logs to **Grafana Cloud Loki**.
 
 To stop the test:
 ```sh
@@ -94,20 +86,6 @@ The project supports multiple test scenarios:
 
 ---
 
-## 👁️ Viewing Logs in Grafana
-After running the test, you can view **real-time logs & metrics** in **Grafana Loki**.
-
-### **How to Access Logs in Grafana**
-1. Open **Grafana Dashboard**
-2. Navigate to **Explore**
-3. Select **Loki** as the data source
-4. Run the following LogQL query:
-   ```logql
-   {container_name="k6-performance-test"}
-   ```
-5. View performance logs for each request.
-
----
-
 ## 🎉 Conclusion
-This K6 automation framework helps developers **stress-test APIs**, analyze performance metrics, and visualize logs in **Grafana Cloud Loki**. 🚀  
+This K6 automation framework helps developers **stress-test APIs** and analyze performance metrics. 🚀
+
